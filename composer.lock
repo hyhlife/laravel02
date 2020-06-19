@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c8e0bac895472b943e9579d6e669de02",
+    "content-hash": "bd1e0d64ba8722fea4b3609cfe1bbe52",
     "packages": [
         {
             "name": "bakerkretzmar/nova-settings-tool",
@@ -548,6 +548,64 @@
             "time": "2020-03-04T13:19:40+00:00"
         },
         {
+            "name": "coroowicaksono/chart-js-integration",
+            "version": "v0.2.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/coroo/nova-chartjs.git",
+                "reference": "16cca83c3cf25076d723c67baa74342d7b66d262"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/coroo/nova-chartjs/zipball/16cca83c3cf25076d723c67baa74342d7b66d262",
+                "reference": "16cca83c3cf25076d723c67baa74342d7b66d262",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Coroowicaksono\\ChartJsIntegration\\CardServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Coroowicaksono\\ChartJsIntegration\\": "src/",
+                    "Coroowicaksono\\ChartJsIntegration\\Api\\": "src/api"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kuncoro Wicaksono",
+                    "email": "coroo.wicaksono@gmail.com",
+                    "role": "Software Engineer"
+                }
+            ],
+            "description": "A Simple Dashboard Chart in Laravel Nova using Chart JS. Starting create your own dashboard with Chart JS Integration can save your time and help you maintain consistency across standard elements such as Bar, Stacked, Line, Area, Doughnut and Pie Chart.",
+            "homepage": "https://github.com/coroo",
+            "keywords": [
+                "chart js",
+                "laravel",
+                "nova",
+                "stacked chart"
+            ],
+            "time": "2020-06-10T02:50:16+00:00"
+        },
+        {
             "name": "ctessier/nova-advanced-image-field",
             "version": "v1.1.0",
             "source": {
@@ -602,6 +660,52 @@
                 "resize"
             ],
             "time": "2020-06-07T13:35:44+00:00"
+        },
+        {
+            "name": "dillingham/nova-button",
+            "version": "1.0.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dillingham/nova-button.git",
+                "reference": "05a03c9c2104a02e51edf840ac29c0a62363666a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dillingham/nova-button/zipball/05a03c9c2104a02e51edf840ac29c0a62363666a",
+                "reference": "05a03c9c2104a02e51edf840ac29c0a62363666a",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "NovaButton\\Providers\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "NovaButton\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Dillingham",
+                    "email": "bdillingham88@gmail.com"
+                }
+            ],
+            "description": "Nova button package",
+            "time": "2020-01-12T14:26:22+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1181,16 +1285,16 @@
         },
         {
             "name": "egulias/email-validator",
-            "version": "2.1.17",
+            "version": "2.1.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/egulias/EmailValidator.git",
-                "reference": "ade6887fd9bd74177769645ab5c474824f8a418a"
+                "reference": "cfa3d44471c7f5bfb684ac2b0da7114283d78441"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/ade6887fd9bd74177769645ab5c474824f8a418a",
-                "reference": "ade6887fd9bd74177769645ab5c474824f8a418a",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/cfa3d44471c7f5bfb684ac2b0da7114283d78441",
+                "reference": "cfa3d44471c7f5bfb684ac2b0da7114283d78441",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1220,7 +1324,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "Egulias\\EmailValidator\\": "EmailValidator"
+                    "Egulias\\EmailValidator\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1241,7 +1345,7 @@
                 "validation",
                 "validator"
             ],
-            "time": "2020-02-13T22:36:52+00:00"
+            "time": "2020-06-16T20:11:17+00:00"
         },
         {
             "name": "ek0519/quilljs",
@@ -1405,16 +1509,16 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "6.5.4",
+            "version": "6.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "a4a1b6930528a8f7ee03518e6442ec7a44155d9d"
+                "reference": "9d4290de1cfd701f38099ef7e183b64b4b7b0c5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/a4a1b6930528a8f7ee03518e6442ec7a44155d9d",
-                "reference": "a4a1b6930528a8f7ee03518e6442ec7a44155d9d",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/9d4290de1cfd701f38099ef7e183b64b4b7b0c5e",
+                "reference": "9d4290de1cfd701f38099ef7e183b64b4b7b0c5e",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1428,7 +1532,7 @@
                 "guzzlehttp/promises": "^1.0",
                 "guzzlehttp/psr7": "^1.6.1",
                 "php": ">=5.5",
-                "symfony/polyfill-intl-idn": "1.17.0"
+                "symfony/polyfill-intl-idn": "^1.17.0"
             },
             "require-dev": {
                 "ext-curl": "*",
@@ -1474,7 +1578,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2020-05-25T19:35:05+00:00"
+            "time": "2020-06-16T21:01:06+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -1688,16 +1792,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v6.18.19",
+            "version": "v6.18.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "69321afec31f4a908112e5dc8995fc91024fd971"
+                "reference": "2862a9857533853bb2851bac39d65e3bfb8ba6cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/69321afec31f4a908112e5dc8995fc91024fd971",
-                "reference": "69321afec31f4a908112e5dc8995fc91024fd971",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/2862a9857533853bb2851bac39d65e3bfb8ba6cd",
+                "reference": "2862a9857533853bb2851bac39d65e3bfb8ba6cd",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1785,6 +1889,7 @@
             "suggest": {
                 "aws/aws-sdk-php": "Required to use the SQS queue driver, DynamoDb failed job storage and SES mail driver (^3.0).",
                 "doctrine/dbal": "Required to rename columns and drop SQLite columns (^2.6).",
+                "ext-ftp": "Required to use the Flysystem FTP driver.",
                 "ext-gd": "Required to use Illuminate\\Http\\Testing\\FileFactory::image().",
                 "ext-memcached": "Required to use the memcache cache driver.",
                 "ext-pcntl": "Required to use all features of the queue worker.",
@@ -1837,7 +1942,82 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-06-09T13:59:34+00:00"
+            "time": "2020-06-16T13:21:33+00:00"
+        },
+        {
+            "name": "laravel/horizon",
+            "version": "v3.7.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/horizon.git",
+                "reference": "62d31b34f7f770a43f802ae2bb46327673e04cbf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/horizon/zipball/62d31b34f7f770a43f802ae2bb46327673e04cbf",
+                "reference": "62d31b34f7f770a43f802ae2bb46327673e04cbf",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "cakephp/chronos": "^1.0",
+                "ext-json": "*",
+                "ext-pcntl": "*",
+                "ext-posix": "*",
+                "illuminate/contracts": "~5.7.0|~5.8.0|^6.0",
+                "illuminate/queue": "~5.7.0|~5.8.0|^6.0",
+                "illuminate/support": "~5.7.0|~5.8.0|^6.0",
+                "php": ">=7.1.0",
+                "predis/predis": "^1.1",
+                "ramsey/uuid": "^3.5",
+                "symfony/debug": "^4.2",
+                "symfony/process": "^4.2"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "^3.7|^4.0",
+                "phpunit/phpunit": "^7.0|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Horizon\\HorizonServiceProvider"
+                    ],
+                    "aliases": {
+                        "Horizon": "Laravel\\Horizon\\Horizon"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Horizon\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Dashboard and code-driven configuration for Laravel queues.",
+            "keywords": [
+                "laravel",
+                "queue"
+            ],
+            "time": "2020-02-25T15:22:42+00:00"
         },
         {
             "name": "laravel/nova",
@@ -2714,16 +2894,16 @@
         },
         {
             "name": "opis/closure",
-            "version": "3.5.4",
+            "version": "3.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opis/closure.git",
-                "reference": "1d0deef692f66dae5d70663caee2867d0971306b"
+                "reference": "dec9fc5ecfca93f45cd6121f8e6f14457dff372c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opis/closure/zipball/1d0deef692f66dae5d70663caee2867d0971306b",
-                "reference": "1d0deef692f66dae5d70663caee2867d0971306b",
+                "url": "https://api.github.com/repos/opis/closure/zipball/dec9fc5ecfca93f45cd6121f8e6f14457dff372c",
+                "reference": "dec9fc5ecfca93f45cd6121f8e6f14457dff372c",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2777,7 +2957,7 @@
                 "serialization",
                 "serialize"
             ],
-            "time": "2020-06-07T11:41:29+00:00"
+            "time": "2020-06-17T14:59:55+00:00"
         },
         {
             "name": "overtrue/laravel-lang",
@@ -4257,7 +4437,7 @@
         },
         {
             "name": "symfony/css-selector",
-            "version": "v5.1.1",
+            "version": "v5.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
@@ -4893,7 +5073,7 @@
         },
         {
             "name": "symfony/intl",
-            "version": "v5.1.1",
+            "version": "v5.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/intl.git",
@@ -4989,7 +5169,7 @@
         },
         {
             "name": "symfony/mime",
-            "version": "v5.1.1",
+            "version": "v5.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mime.git",
@@ -6882,16 +7062,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.7.2",
+            "version": "2.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "17d0d3f266c8f925ebd035cd36f83cf802b47d4a"
+                "reference": "5d5fe9bb3d656b514d455645b3addc5f7ba7714d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/17d0d3f266c8f925ebd035cd36f83cf802b47d4a",
-                "reference": "17d0d3f266c8f925ebd035cd36f83cf802b47d4a",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/5d5fe9bb3d656b514d455645b3addc5f7ba7714d",
+                "reference": "5d5fe9bb3d656b514d455645b3addc5f7ba7714d",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -6945,7 +7125,7 @@
                 "throwable",
                 "whoops"
             ],
-            "time": "2020-05-05T12:28:07+00:00"
+            "time": "2020-06-14T09:00:00+00:00"
         },
         {
             "name": "fzaninotto/faker",
@@ -8050,16 +8230,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "8.5.5",
+            "version": "8.5.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "63dda3b212a0025d380a745f91bdb4d8c985adb7"
+                "reference": "3f9c4079d1407cd84c51c02c6ad1df6ec2ed1348"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/63dda3b212a0025d380a745f91bdb4d8c985adb7",
-                "reference": "63dda3b212a0025d380a745f91bdb4d8c985adb7",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3f9c4079d1407cd84c51c02c6ad1df6ec2ed1348",
+                "reference": "3f9c4079d1407cd84c51c02c6ad1df6ec2ed1348",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -8145,7 +8325,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-05-22T13:51:52+00:00"
+            "time": "2020-06-15T10:45:47+00:00"
         },
         {
             "name": "scrivo/highlight.php",
@@ -8963,16 +9143,16 @@
         },
         {
             "name": "webmozart/assert",
-            "version": "1.8.0",
+            "version": "1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozart/assert.git",
-                "reference": "ab2cb0b3b559010b75981b1bdce728da3ee90ad6"
+                "reference": "9dc4f203e36f2b486149058bade43c851dd97451"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/ab2cb0b3b559010b75981b1bdce728da3ee90ad6",
-                "reference": "ab2cb0b3b559010b75981b1bdce728da3ee90ad6",
+                "url": "https://api.github.com/repos/webmozart/assert/zipball/9dc4f203e36f2b486149058bade43c851dd97451",
+                "reference": "9dc4f203e36f2b486149058bade43c851dd97451",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -8986,6 +9166,7 @@
                 "symfony/polyfill-ctype": "^1.8"
             },
             "conflict": {
+                "phpstan/phpstan": "<0.12.20",
                 "vimeo/psalm": "<3.9.1"
             },
             "require-dev": {
@@ -9013,7 +9194,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2020-04-18T12:12:48+00:00"
+            "time": "2020-06-16T10:16:42+00:00"
         }
     ],
     "aliases": [],

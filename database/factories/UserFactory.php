@@ -18,7 +18,7 @@ use Illuminate\Support\Str;
 */
 
 $factory->define(User::class, function (Faker $faker) {
-    $date_time = $faker->dateTimeBetween('2020-01-01', 'now', 'PRC');
+    $date_time = $faker->dateTimeBetween('2020-05-01', '2020-08-01', 'PRC');
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,

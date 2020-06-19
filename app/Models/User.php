@@ -124,4 +124,5 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
         // $this->attributes['password'] = $value;
     }
+
 }

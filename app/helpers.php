@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
+
 // 将当前请求的路由名称转换为 CSS 类名称
 function route_class()
 {
@@ -51,3 +53,64 @@ function model_plural_name($model)
     // 获取子串的复数形式，例如：传参 `user` 会得到 `users`
     return Str::plural($snake_case_name);
 }
+
+function per_day(){
+    $per_day = array();
+    $end_day = date("Y-m-d",time());
+    $start_day = date("Y-m-d",strtotime("-7 day"));
+    $dif_date = printDates($start_day,$end_day);
+    $per_day['xaxis'] = $dif_date;
+    $per_day['series_label_01'] = $start_day.'-'.$end_day;
+
+    $last_start_day = date("Y-m-d",strtotime("-15 day"));
+    $last_end_day = date("Y-m-d",strtotime("-8 day"));
+    $per_day['series_label_02'] = $last_start_day.'-'.$last_end_day;
+    $last_dif_date = printDates($last_start_day,$last_end_day);
+    $users_per_day = users_per_day($last_start_day,$end_day);
+    $topics_per_day = topics_per_day($last_start_day,$end_day);
+    $per_day['users_per_day'] = $users_per_day;
+    $per_day['topics_per_day'] = $topics_per_day;
+    return $per_day;
+}
+
+function printDates($start,$end){
+    $dif_date = array();
+    $dt_start = strtotime($start);
+    $dt_end = strtotime($end);
+    while ($dt_start<=$dt_end){
+        $dif_date[] = date('Y-m-d',$dt_start);
+        $dt_start = strtotime('+1 day',$dt_start);
+    }
+    return $dif_date;
+}
+
+function users_per_day($last_start_day,$end_day){
+    $all_date = printDates($last_start_day,$end_day);
+    $all_date_user_count = array();
+    foreach ($all_date as $key => $value) {
+        $all_date_user_count[$value] = 0;
+    }
+    $all_users = Db::table('users')->whereBetween('created_at',array($last_start_day.' 00:00:00',$end_day.' 23:59:59'))->orderBy('created_at','asc')->pluck('created_at');
+    foreach ($all_users as $key => $value) {
+        $cur_date = date("Y-m-d",strtotime($value));
+        $all_date_user_count[$cur_date] = $all_date_user_count[$cur_date]+1;
+    }
+    $chunk_all_date_user_count = array_chunk($all_date_user_count, 8);
+    return array('series_data_01'=>$chunk_all_date_user_count[0],'series_data_02'=>$chunk_all_date_user_count[1]);
+}
+
+function topics_per_day($last_start_day,$end_day){
+    $all_date = printDates($last_start_day,$end_day);
+    $all_date_user_count = array();
+    foreach ($all_date as $key => $value) {
+        $all_date_user_count[$value] = 0;
+    }
+    $all_users = Db::table('topics')->whereBetween('created_at',array($last_start_day.' 00:00:00',$end_day.' 23:59:59'))->orderBy('created_at','asc')->pluck('created_at');
+    foreach ($all_users as $key => $value) {
+        $cur_date = date("Y-m-d",strtotime($value));
+        $all_date_user_count[$cur_date] = $all_date_user_count[$cur_date]+1;
+    }
+    $chunk_all_date_user_count = array_chunk($all_date_user_count, 8);
+    return array('series_data_01'=>$chunk_all_date_user_count[0],'series_data_02'=>$chunk_all_date_user_count[1]);
+}
+

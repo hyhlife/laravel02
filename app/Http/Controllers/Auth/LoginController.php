@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\Models\Category;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -20,6 +21,12 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+
+    public function showLoginForm()
+    {
+        $categories = Category::orderBy('order','asc')->get();
+        return view('auth.login',compact('categories'));
+    }
 
     /**
      * Where to redirect users after login.

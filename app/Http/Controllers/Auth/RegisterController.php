@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Models\Category;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -24,6 +25,12 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+
+    public function showRegistrationForm()
+    {
+        $categories = Category::orderBy('order','asc')->get();
+        return view('auth.register',compact('categories'));
+    }
 
     /**
      * Where to redirect users after registration.

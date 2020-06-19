@@ -20,6 +20,8 @@ class NewTopics extends Value
         return $this->count($request, Topic::class);
     }
 
+    public $name = '话题量';
+
     /**
      * Get the ranges available for the metric.
      *

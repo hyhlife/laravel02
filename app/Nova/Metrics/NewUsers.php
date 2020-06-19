@@ -37,6 +37,8 @@ class NewUsers extends Value
         ];
     }
 
+    public $name = '用户量';
+
     /**
      * Determine for how many minutes the metric should be cached.
      *
@@ -56,4 +58,5 @@ class NewUsers extends Value
     {
         return 'new-users';
     }
+
 }

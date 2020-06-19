@@ -15,6 +15,7 @@ use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\MorphToMany;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Nova\Fields\HasMany;
+use NovaButton\Button;
 // use Ctessier\NovaAdvancedImageField\AdvancedImage;
 
 class User extends Resource
@@ -62,13 +63,13 @@ class User extends Resource
         return [
             ID::make('用户id','id')->sortable(),
 
-            // Gravatar::make('头像','avatar')->path('nova/images/avatars/'.$request->user()->id),
-            // Avatar::make('头像','avatar')->path('nova/images/avatars/'.$request->user()->id)->onlyOnForms(),
-            // AdvancedImage::make('头像','avatar')->croppable(),
-            Avatar::make('头像','avatar')->path('nova/images/avatars/'.$request->user()->id),
-
+            Avatar::make('头像','avatar', function () {
+                return <<<HTML
+                    <img src="{$this->user->avatar}" width="30" style="border-radius: 100px;">
+                HTML;
+            })->path('nova/images/avatars/'.$request->user()->id),
             Text::make('用户名','name')
-                ->sortable()
+                ->onlyOnForms()
                 ->rules('required', 'max:255')
                 ->creationRules('unique:users,name')
                 ->updateRules('unique:users,name,{{resourceId}}'),
@@ -78,7 +79,7 @@ class User extends Resource
                 return <<<HTML
                     <a class="no-underline dim text-primary font-bold" href="{$route}" target="_blank">{$this->name}</a>
                 HTML;
-            })->asHtml(),
+            })->sortable()->asHtml(),
 
             Text::make('邮箱','email')
                 ->sortable()
@@ -94,6 +95,8 @@ class User extends Resource
             DateTime::make('注册时间','created_at')->onlyOnIndex(),
 
             RoleSelect::make('Role', 'roles'),
+
+            Button::make('用户详情')->link(config('app.url').'/users/'.$this->id)->onlyOnIndex()->style('info'),
 
             HasMany::make('Topic', 'topics'),
 
@@ -124,6 +127,7 @@ class User extends Resource
         return [
             new Filters\StartDataFilter(),
             new Filters\EndDataFilter(),
+            new Filters\UserRoleFilter(),
         ];
     }
 

@@ -12,6 +12,7 @@ use Laravel\Nova\Fields\BelongsTo;
 use Ek0519\Quilljs\Quilljs;
 use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\HasMany;
+use NovaButton\Button;
 
 class Topic extends Resource
 {
@@ -85,13 +86,18 @@ class Topic extends Resource
             Text::make('作者', function () {
                 $route = route('users.show', $this->user_id);
                 return <<<HTML
-                    <a class="no-underline dim text-primary font-bold" href="{$route}" target="_blank">{$this->user->name}</a>
+                    <a class="no-underline dim text-primary font-bold" href="{$route}" target="_blank">
+                        <img src="{$this->user->avatar}" width="30" style="border-radius: 100px;vertical-align: middle;">
+                        {$this->user->name}
+                        </a>
                 HTML;
             })->asHtml(),
             BelongsTo::make('分类','Category','App\\Nova\\Category')->required(true),
             Text::make('评论数',function(){
                 return $this->replies->count();
             })->onlyOnIndex(),
+
+            Button::make('论坛详情')->link(config('app.url').'/topics/'.$this->id)->onlyOnIndex()->style('info'),
             
             Quilljs::make('话题内容','body')
                 ->withFiles('public')
@@ -127,6 +133,7 @@ class Topic extends Resource
     {
         return [
             new Filters\CategoryFilter(),
+            new Filters\HasReplyFilter(),
         ];
     }
 
