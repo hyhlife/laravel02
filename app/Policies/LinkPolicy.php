@@ -22,7 +22,7 @@ class LinkPolicy
 
     public function viewAny(): bool
     {
-        if(Auth::check() && Auth::user()->can('manage_contents')){
+        if(Auth::check() && Auth::user()->can('manage_links')){
             return true;
         } else {
             return false;
@@ -31,7 +31,7 @@ class LinkPolicy
 
     public function create(): bool
     {
-        if(Auth::check() && Auth::user()->can('manage_contents')){
+        if(Auth::check() && Auth::user()->can('manage_links_add')){
             return true;
         } else {
             return false;
@@ -40,7 +40,7 @@ class LinkPolicy
 
     public function view(): bool
     {
-        if(Auth::check() && Auth::user()->can('manage_contents')){
+        if(Auth::check() && Auth::user()->can('manage_links')){
             return true;
         } else {
             return false;
@@ -50,7 +50,7 @@ class LinkPolicy
 
     public function update()
     {
-        if(Auth::check() && Auth::user()->can('manage_contents')){
+        if(Auth::check() && Auth::user()->can('manage_links_edit')){
             return true;
         } else {
             return false;
@@ -70,7 +70,7 @@ class LinkPolicy
 
     public function delete(): bool
     {
-        if(Auth::check() && Auth::user()->can('manage_contents')){
+        if(Auth::check() && Auth::user()->can('manage_links_delete')){
             return true;
         } else {
             return false;

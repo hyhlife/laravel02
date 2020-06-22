@@ -186,7 +186,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 return $request->user()->can('manage_users');
             }),
             (new SettingsTool)->canSee(function ($request){
-                return $request->user()->can('manage_users');
+                return $request->user()->can('manage_settings');
             }),
         ];
     }

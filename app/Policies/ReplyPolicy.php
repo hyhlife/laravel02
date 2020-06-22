@@ -11,7 +11,7 @@ class ReplyPolicy extends Policy
 
     public function viewAny(): bool
     {
-        if(Auth::check() && Auth::user()->can('manage_contents')){
+        if(Auth::check() && Auth::user()->can('manage_replies')){
             return true;
         } else {
             return false;
@@ -20,7 +20,7 @@ class ReplyPolicy extends Policy
 
     public function view(): bool
     {
-        if(Auth::check() && Auth::user()->can('manage_contents')){
+        if(Auth::check() && Auth::user()->can('manage_replies')){
             return true;
         } else {
             return false;
@@ -29,7 +29,7 @@ class ReplyPolicy extends Policy
 
     public function create(): bool
     {
-        if(Auth::check() && Auth::user()->can('manage_contents')){
+        if(Auth::check() && Auth::user()->can('manage_replies_add')){
             return true;
         } else {
             return false;
@@ -38,7 +38,7 @@ class ReplyPolicy extends Policy
 
     public function edit(): bool
     {
-        if(Auth::check() && Auth::user()->can('manage_contents')){
+        if(Auth::check() && Auth::user()->can('manage_replies_edit')){
             return true;
         } else {
             return false;
@@ -53,7 +53,7 @@ class ReplyPolicy extends Policy
 
     public function update(User $user, Reply $reply)
     {
-        if(Auth::check() && Auth::user()->can('manage_contents')){
+        if(Auth::check() && Auth::user()->can('manage_replies_edit')){
             return true;
         } else {
             return $user->isAuthorOf($reply) || $user->isAuthorOf($reply->topic);
@@ -62,7 +62,7 @@ class ReplyPolicy extends Policy
 
     public function delete(User $user, Reply $reply)
     {
-        if(Auth::check() && Auth::user()->can('manage_contents')){
+        if(Auth::check() && Auth::user()->can('manage_replies_delete')){
             return true;
         } else {
             return $user->isAuthorOf($reply) || $user->isAuthorOf($reply->topic);

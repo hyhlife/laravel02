@@ -68,18 +68,20 @@ class User extends Resource
                     <img src="{$this->user->avatar}" width="30" style="border-radius: 100px;">
                 HTML;
             })->path('nova/images/avatars/'.$request->user()->id),
-            Text::make('用户名','name')
-                ->onlyOnForms()
-                ->rules('required', 'max:255')
-                ->creationRules('unique:users,name')
-                ->updateRules('unique:users,name,{{resourceId}}'),
 
-            Text::make('用户名', function () {
+            Text::make('用户名','name', function () {
                 $route = route('users.show', $this->id);
                 return <<<HTML
                     <a class="no-underline dim text-primary font-bold" href="{$route}" target="_blank">{$this->name}</a>
                 HTML;
-            })->sortable()->asHtml(),
+            })->asHtml()->sortable()->onlyOnIndex(),
+
+            Text::make('用户名','name')
+            ->onlyOnForms()
+            ->showOnDetail()
+            ->rules('required', 'max:255')
+            ->creationRules('unique:users,name')
+            ->updateRules('unique:users,name,{{resourceId}}'),
 
             Text::make('邮箱','email')
                 ->sortable()

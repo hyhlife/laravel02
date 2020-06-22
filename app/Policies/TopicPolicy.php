@@ -10,7 +10,7 @@ class TopicPolicy extends Policy
 {
     public function viewAny(): bool
     {
-        if(Auth::check() && Auth::user()->can('manage_contents')){
+        if(Auth::check() && Auth::user()->can('manage_topics')){
             return true;
         } else {
             return false;
@@ -19,7 +19,7 @@ class TopicPolicy extends Policy
 
     public function view(): bool
     {
-        if(Auth::check() && Auth::user()->can('manage_contents')){
+        if(Auth::check() && Auth::user()->can('manage_topics')){
             return true;
         } else {
             return false;
@@ -28,7 +28,7 @@ class TopicPolicy extends Policy
 
     public function create(): bool
     {
-        if(Auth::check() && Auth::user()->can('manage_contents')){
+        if(Auth::check() && Auth::user()->can('manage_topics_add')){
             return true;
         } else {
             return false;
@@ -37,7 +37,7 @@ class TopicPolicy extends Policy
     
     public function update(User $user, Topic $topic)
     {
-        if(Auth::check() && Auth::user()->can('manage_contents')){
+        if(Auth::check() && Auth::user()->can('manage_topics_edit')){
             return true;
         } else {
             return $user->isAuthorOf($topic);
@@ -52,7 +52,7 @@ class TopicPolicy extends Policy
 
     public function delete(User $user, Topic $topic)
     {
-        if(Auth::check() && Auth::user()->can('manage_contents')){
+        if(Auth::check() && Auth::user()->can('manage_topics_delete')){
             return true;
         } else {
             return $user->isAuthorOf($topic);

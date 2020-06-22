@@ -40,7 +40,7 @@ class UserPolicy
 
     public function create(): bool
     {
-        if(Auth::check() && Auth::user()->can('manage_users')){
+        if(Auth::check() && Auth::user()->can('manage_users_add')){
             return true;
         } else {
             return false;
@@ -50,7 +50,7 @@ class UserPolicy
 
     public function update(User $currentUser, User $user)
     {
-        if(Auth::check() && Auth::user()->can('manage_users')){
+        if(Auth::check() && Auth::user()->can('manage_users_edit')){
             return true;
         } else {
             return $currentUser->id === $user->id;
@@ -60,7 +60,7 @@ class UserPolicy
 
     public function edit(): bool
     {
-        if(Auth::check() && Auth::user()->can('manage_users')){
+        if(Auth::check() && Auth::user()->can('manage_users_edit')){
             return true;
         } else {
             return false;
@@ -70,7 +70,7 @@ class UserPolicy
 
     public function delete(User $currentUser,User $user): bool
     {
-        if($currentUser->can('manage_users') && !$user->hasRole('超级管理员')){
+        if($currentUser->can('manage_users_delete') && !$user->hasRole('超级管理员')){
             return true;
         } else {
             return false;

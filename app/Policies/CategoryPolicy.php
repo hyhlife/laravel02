@@ -23,7 +23,7 @@ class CategoryPolicy
 
     public function viewAny(): bool
     {
-        if(Auth::check() && Auth::user()->can('manage_contents')){
+        if(Auth::check() && Auth::user()->can('manage_categories')){
             return true;
         } else {
             return false;
@@ -33,7 +33,7 @@ class CategoryPolicy
 
     public function view(): bool
     {
-        if(Auth::check() && Auth::user()->can('manage_contents')){
+        if(Auth::check() && Auth::user()->can('manage_categories')){
             return true;
         } else {
             return false;
@@ -42,7 +42,7 @@ class CategoryPolicy
 
     public function create(): bool
     {
-        if(Auth::check() && Auth::user()->can('manage_contents')){
+        if(Auth::check() && Auth::user()->can('manage_categories_add')){
             return true;
         } else {
             return false;
@@ -51,7 +51,7 @@ class CategoryPolicy
 
     public function update()
     {
-        if(Auth::check() && Auth::user()->can('manage_contents')){
+        if(Auth::check() && Auth::user()->can('manage_categories_edit')){
             return true;
         } else {
             return false;
@@ -60,7 +60,7 @@ class CategoryPolicy
 
     public function delete()
     {
-        if(Auth::check() && Auth::user()->can('manage_contents')){
+        if(Auth::check() && Auth::user()->can('manage_categories_delete')){
             return true;
         } else {
             return false;
