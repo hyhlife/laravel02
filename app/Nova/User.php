@@ -113,11 +113,14 @@ class User extends Resource
 
         if($this->hasRole('超级管理员')){
             if(Auth::user()->hasRole('超级管理员')){
-                $fields[] = HasMany::make('Topic', 'topics');
-                $fields[] = MorphToMany::make('Roles', 'roles', \Vyuldashev\NovaPermission\Role::class);
+                $fields[] = HasMany::make('话题', 'topics',\App\Nova\Topic::class);
+                $fields[] = MorphToMany::make('角色', 'roles', \Vyuldashev\NovaPermission\Role::class);
             }
         } else {
-            $fields[] = HasMany::make('Topic', 'topics');
+            $fields[] = HasMany::make('话题', 'topics',\App\Nova\Topic::class);
+            if(Auth::user()->can('manage_roles')){
+                $fields[] = MorphToMany::make('角色', 'roles', \Vyuldashev\NovaPermission\Role::class);
+            }
         }
 
         return $fields;

@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -33,16 +34,8 @@ class SendReminderEmail implements ShouldQueue
      */
     public function handle()
     {
-        $user = $this->user;
-        $view = 'emails.confirm';
-        $data = compact('user');
-        $from = 'hyh875986139@aliyun.com';
-        $name = 'Yellow';
-        $to = $user->email;
-        $subject = "感谢注册 Weibo 应用！请确认你的邮箱。";
-
-        Mail::send($view, $data, function ($message) use ($from, $name, $to, $subject) {
-            $message->from($from, $name)->to($to)->subject($subject);
-        });
+        if ($this->user instanceof MustVerifyEmail && ! $this->user->hasVerifiedEmail()) {
+            $this->user->sendEmailVerificationNotification();
+        }
     }
 }

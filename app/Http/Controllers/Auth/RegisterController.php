@@ -2,14 +2,22 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Jobs\SendReminderEmail;
+
+use App\Models\User;
+use App\Models\Category;
+
+use Illuminate\Support\Str;
+
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\Models\User;
-use Illuminate\Support\Str;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use App\Models\Category;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -32,6 +40,19 @@ class RegisterController extends Controller
         return view('auth.register',compact('categories'));
     }
 
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        $user = $this->create($request->all());
+
+        $this->dispatch(new SendReminderEmail($user));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
+    }
     /**
      * Where to redirect users after registration.
      *
