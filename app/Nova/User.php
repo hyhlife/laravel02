@@ -16,6 +16,7 @@ use Laravel\Nova\Fields\MorphToMany;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Nova\Fields\HasMany;
 use NovaButton\Button;
+use Auth;
 // use Ctessier\NovaAdvancedImageField\AdvancedImage;
 
 class User extends Resource
@@ -60,7 +61,7 @@ class User extends Resource
      */
     public function fields(Request $request)
     {
-        return [
+        $fields =  [
             ID::make('用户id','id')->sortable(),
 
             Avatar::make('头像','avatar', function () {
@@ -100,15 +101,26 @@ class User extends Resource
                 return $this->topics->count();
             })->onlyOnIndex(),
 
-            RoleSelect::make('Role', 'roles'),
+            RoleSelect::make('角色', 'roles'),
 
             Button::make('用户详情')->link(config('app.url').'/users/'.$this->id)->onlyOnIndex()->style('info'),
 
-            HasMany::make('Topic', 'topics'),
+            // HasMany::make('Topic', 'topics'),
 
-            MorphToMany::make('Roles', 'roles', \Vyuldashev\NovaPermission\Role::class),
+            // MorphToMany::make('Roles', 'roles', \Vyuldashev\NovaPermission\Role::class),
             // MorphToMany::make('Permissions', 'permissions', \Vyuldashev\NovaPermission\Permission::class),
         ];
+
+        if($this->hasRole('超级管理员')){
+            if(Auth::user()->hasRole('超级管理员')){
+                $fields[] = HasMany::make('Topic', 'topics');
+                $fields[] = MorphToMany::make('Roles', 'roles', \Vyuldashev\NovaPermission\Role::class);
+            }
+        } else {
+            $fields[] = HasMany::make('Topic', 'topics');
+        }
+
+        return $fields;
     }
 
     /**

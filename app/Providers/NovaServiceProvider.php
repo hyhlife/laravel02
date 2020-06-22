@@ -183,7 +183,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         return [
             (\Vyuldashev\NovaPermission\NovaPermissionTool::make())->canSee(function ($request){
-                return $request->user()->can('manage_users');
+                return $request->user()->can('manage_users') || $request->user()->can('manage_roles') || $request->user()->can('manage_permissions');
             }),
             (new SettingsTool)->canSee(function ($request){
                 return $request->user()->can('manage_settings');

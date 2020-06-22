@@ -51,17 +51,33 @@ class UserPolicy
     public function update(User $currentUser, User $user)
     {
         if(Auth::check() && Auth::user()->can('manage_users_edit')){
-            return true;
+            if($user->hasRole('超级管理员')){
+                if($currentUser->hasRole('超级管理员')){
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return true;
+            }
         } else {
             return $currentUser->id === $user->id;
         }
     }
 
 
-    public function edit(): bool
+    public function edit(User $currentUser, User $user): bool
     {
         if(Auth::check() && Auth::user()->can('manage_users_edit')){
-            return true;
+            if($user->hasRole('超级管理员')){
+                if($currentUser->hasRole('超级管理员')){
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return true;
+            }
         } else {
             return false;
         }
