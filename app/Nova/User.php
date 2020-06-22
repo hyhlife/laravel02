@@ -94,6 +94,10 @@ class User extends Resource
 
             DateTime::make('注册时间','created_at')->onlyOnIndex(),
 
+            Text::make('话题数量',function(){
+                return $this->topics->count();
+            })->onlyOnIndex(),
+
             RoleSelect::make('Role', 'roles'),
 
             Button::make('用户详情')->link(config('app.url').'/users/'.$this->id)->onlyOnIndex()->style('info'),

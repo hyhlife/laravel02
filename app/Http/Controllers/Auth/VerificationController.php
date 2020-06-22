@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use App\Models\Category;
+use Illuminate\Http\Request;
 
 class VerificationController extends Controller
 {
@@ -20,6 +22,14 @@ class VerificationController extends Controller
     */
 
     use VerifiesEmails;
+
+    public function show(Request $request)
+    {
+        $categories = Category::orderBy('order','asc')->get();
+        return $request->user()->hasVerifiedEmail()
+                        ? redirect($this->redirectPath())
+                        : view('auth.verify',compact('categories'));
+    }
 
     /**
      * Where to redirect users after verification.

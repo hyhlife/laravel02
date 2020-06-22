@@ -25,9 +25,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // 一小时执行一次计算活跃用户   hourly
-        $schedule->command('laravel02:calculate-active-user')->hourly();
+        $schedule->command('laravel02:calculate-active-user')->everyMinute();//hourly
         // 每天零时执行一次上次登录时间
-        $schedule->command('laravel02:sync-user-actived-at')->dailyAt('00:00');
+        $schedule->command('laravel02:sync-user-actived-at')->hourly();//dailyAt('00:00')
     }
 
     /**
