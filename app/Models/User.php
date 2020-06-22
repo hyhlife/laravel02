@@ -94,8 +94,8 @@ class User extends Authenticatable implements MustVerifyEmailContract
         // 如果不是 `http` 子串开头，那就是从后台上传的，需要补全 URL
         if ( ! \Str::startsWith($path, 'http')) {
             // 拼接完整的 URL
-            if (\Str::startsWith($path, 'nova')) {
-                $path = config('app.url') . "/storage/$path";
+            if (\Str::startsWith($path, 'huangyanhong')) {
+                $path = env('MINIO_URL') . "/$path";
             } else {
                 $path = config('app.url') . "/uploads/images/avatars/$path";
             }

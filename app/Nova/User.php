@@ -68,7 +68,7 @@ class User extends Resource
                 return <<<HTML
                     <img src="{$this->user->avatar}" width="30" style="border-radius: 100px;">
                 HTML;
-            })->path('nova/images/avatars/'.$request->user()->id),
+            })->disk('minio')->path('huangyanhong/avatars/'.$request->user()->id),
 
             Text::make('用户名','name', function () {
                 $route = route('users.show', $this->id);

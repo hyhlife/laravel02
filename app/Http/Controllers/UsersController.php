@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Http\Requests\UserRequest;
 use App\Models\Category;
 use App\Handlers\ImageUploadHandler;
+use Illuminate\Support\Facades\Storage;
 
 class UsersController extends Controller
 {
@@ -32,10 +33,14 @@ class UsersController extends Controller
     	$this->authorize('update', $user);
     	$data = $request->all();
         if ($request->avatar) {
-            $result = $uploader->save($request->avatar, 'avatars', $user->id);
+            $result = Storage::disk('minio')->put('/huangyanhong/avatar', $request->file('avatar'));
             if ($result) {
-                $data['avatar'] = $result['path'];
+                $data['avatar'] = $result;
             }
+            // $result = $uploader->save($request->avatar, 'avatars', $user->id);
+            // if ($result) {
+            //     $data['avatar'] = $result['path'];
+            // }
         }
 
         $user->update($data);

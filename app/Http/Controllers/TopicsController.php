@@ -9,6 +9,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
+use Illuminate\Support\Facades\Storage;
 use Auth;
 use App\Handlers\ImageUploadHandler;
 
@@ -66,7 +67,9 @@ class TopicsController extends Controller
 	public function update(TopicRequest $request, Topic $topic)
 	{
 		$this->authorize('update', $topic);
-		$topic->update($request->all());
+        $update = $request->all();
+        $update['slug'] = '';
+		$topic->update($update);
 
 		return redirect()->to($topic->link())->with('message', '帖子修改成功!');
 	}
@@ -90,13 +93,19 @@ class TopicsController extends Controller
         // 判断是否有上传文件，并赋值给 $file
         if ($file = $request->upload_file) {
             // 保存图片到本地
-            $result = $uploader->save($file, 'topics', \Auth::id(), 1024);
-            // 图片保存成功的话
+            $result = Storage::disk('minio')->put('/huangyanhong/topic', $file);
             if ($result) {
-                $data['file_path'] = $result['path'];
+                $data['file_path'] = env('MINIO_URL').'/'.$result;
                 $data['msg']       = "上传成功!";
                 $data['success']   = true;
             }
+            // $result = $uploader->save($file, 'topics', \Auth::id(), 1024);
+            // // 图片保存成功的话
+            // if ($result) {
+            //     $data['file_path'] = $result['path'];
+            //     $data['msg']       = "上传成功!";
+            //     $data['success']   = true;
+            // }
         }
         return $data;
     }
