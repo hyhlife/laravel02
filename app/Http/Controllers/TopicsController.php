@@ -93,7 +93,7 @@ class TopicsController extends Controller
         // 判断是否有上传文件，并赋值给 $file
         if ($file = $request->upload_file) {
             // 保存图片到本地
-            $result = Storage::disk('minio')->put('/huangyanhong/topic', $file);
+            $result = Storage::disk('minio')->put('/huangyanhong/topic/'.Auth::user()->id, $file);
             if ($result) {
                 $data['file_path'] = env('MINIO_URL').'/'.$result;
                 $data['msg']       = "上传成功!";

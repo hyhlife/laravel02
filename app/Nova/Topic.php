@@ -100,13 +100,10 @@ class Topic extends Resource
             Button::make('论坛详情')->link(config('app.url').'/topics/'.$this->id)->onlyOnIndex()->style('info'),
             
             Quilljs::make('话题内容','body')
-                ->withFiles('public')
+                ->withFiles('minio', 'huangyanhong/topic'.$this->user_id)
                 ->height(500)
                 ->alwaysShow()
                 ->rules('required'),
-            // ->fullWidth(false) (option, default full-width)
-            // ->height(500) (option, default 300px)
-            // Textarea::make('内容','body')->alwaysShow(),
 
             HasMany::make('Reply', 'replies'),
         ];
