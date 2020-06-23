@@ -15,7 +15,7 @@ return [
     |
      */
     
-    'allowed_tlds' => ['dev', 'local','laravel02'],
+    'allowed_tlds' => ['dev', 'local','laravel02','laravel02.docker'],
 
     /*
     |--------------------------------------------------------------------------
