@@ -15,7 +15,8 @@ class Link extends Resource
      *
      * @var string
      */
-    public static $model = 'App\\Models\\Link';
+    public static $model = 'App\Models\Link';
+
 
     public static $group = '内容管理';
 
@@ -53,7 +54,7 @@ class Link extends Resource
         return [
             ID::make()->sortable(),
             Text::make('名称','title')->rules('required', 'max:255'),
-            Text::make('链接','link')->rules('required', 'max:255'),
+            Text::make('链接','link')->rules('required', 'max:255')
         ];
     }
 

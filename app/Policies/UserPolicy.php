@@ -10,16 +10,6 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Create a new policy instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
     public function viewAny(): bool
     {
         if(Auth::check() && Auth::user()->can('manage_users')){

@@ -16,20 +16,21 @@ class Category extends Resource
      *
      * @var string
      */
-    public static $model = 'App\\Models\\Category';
-
-    public static $group = '内容管理';
-
-    public static $priority = 1;
+    public static $model = 'App\Models\Category';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
+    public static $group = '内容管理';
+
+    public static $priority = 1;
+
     public static $title = 'name';
 
     public static $name = '分类';
+
     /**
      * The columns that should be searched.
      *
@@ -62,7 +63,7 @@ class Category extends Resource
             Text::make('话题数量',function(){
                 return $this->topic->count();
             })->onlyOnIndex(),
-            HasMany::make('Topic', 'topic'),
+            HasMany::make('话题', 'topic','App\Nova\Topic')
         ];
     }
 

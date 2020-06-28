@@ -21,17 +21,17 @@ class Topic extends Resource
      *
      * @var string
      */
-    public static $model = 'App\\Models\\Topic';
-
-    public static $group = '内容管理';
-
-    public static $priority = 2;
+    public static $model = 'App\Models\Topic';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
+    public static $group = '内容管理';
+
+    public static $priority = 2;
+
     public static $title = 'title';
 
     public static $with = ['user','category','replies'];
@@ -69,14 +69,13 @@ class Topic extends Resource
                 ->onlyOnForms()
                 ->showOnDetail()
                 ->rules('required', 'min:4', 'max:255'),
-
             Text::make('标题','title', function () {
                 $route = route('topics.show', $this->id);
                 return <<<HTML
-                    <a class="no-underline dim text-primary font-bold" href="{$route}" target="_blank">{$this->title}</a>
-                HTML;
+            <a class="no-underline dim text-primary font-bold" href="{$route}" target="_blank">{$this->title}</a>
+HTML;
             })->sortable()->onlyOnIndex()->asHtml(),
-            BelongsTo::make('作者','User','App\\Nova\\User')
+            BelongsTo::make('作者','User','App\Nova\User')
                 ->hideFromIndex()
                 ->hideFromDetail()
                 ->showOnUpdating()
@@ -86,13 +85,13 @@ class Topic extends Resource
             Text::make('作者', function () {
                 $route = route('users.show', $this->user_id);
                 return <<<HTML
-                    <a class="no-underline dim text-primary font-bold" href="{$route}" target="_blank">
-                        <img src="{$this->user->avatar}" width="30" style="border-radius: 100px;vertical-align: middle;">
-                        {$this->user->name}
-                        </a>
-                HTML;
+            <a class="no-underline dim text-primary font-bold" href="{$route}" target="_blank">
+                <img src="{$this->user->avatar}" width="30" style="border-radius: 100px;vertical-align: middle;">
+                {$this->user->name}
+            </a>
+HTML;
             })->asHtml(),
-            BelongsTo::make('分类','Category','App\\Nova\\Category')->required(true),
+            BelongsTo::make('分类','Category','App\Nova\Category')->required(true),
             Text::make('评论数',function(){
                 return $this->replies->count();
             })->onlyOnIndex(),
@@ -105,7 +104,7 @@ class Topic extends Resource
                 ->alwaysShow()
                 ->rules('required'),
 
-            HasMany::make('Reply', 'replies'),
+            HasMany::make('评论内容', 'replies','App\Nova\Reply')
         ];
     }
 
@@ -130,7 +129,7 @@ class Topic extends Resource
     {
         return [
             new Filters\CategoryFilter(),
-            new Filters\HasReplyFilter(),
+            new Filters\HasReplyFilter()
         ];
     }
 
@@ -155,9 +154,4 @@ class Topic extends Resource
     {
         return [];
     }
-
-    // public function title()
-    // {
-    //     return $this->;
-    // }
 }

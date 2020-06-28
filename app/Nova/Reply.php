@@ -17,18 +17,17 @@ class Reply extends Resource
      *
      * @var string
      */
-    public static $model = 'App\\Models\\Reply';
+    public static $model = 'App\Models\Reply';
 
     public static $group = '内容管理';
 
     public static $priority = 3;
-
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'content';
+     public static $title = 'content';
 
     public static $name = '回复';
 
@@ -45,7 +44,7 @@ class Reply extends Resource
      * @var array
      */
     public static $search = [
-        'content',
+        'content'
     ];
 
     public static function label()
@@ -65,32 +64,31 @@ class Reply extends Resource
             ID::make()->sortable(),
             Text::make('评论内容','content')->onlyOnIndex(),
             Textarea::make('评论内容','content')->rules('required', 'min:8', 'max:255')->alwaysShow(),
-            BelongsTo::make('作者','User','App\\Nova\\User')
+            BelongsTo::make('作者','User','App\Nova\User')
                 ->hideFromIndex()
                 ->hideFromDetail()
                 ->showOnUpdating()
                 ->showOnCreating()
                 ->required(true)
                 ->searchable(),
-            Text::make('作者', function () {
+            Text::make('作者','User','App\Nova\User', function () {
                 $route = route('users.show', $this->user_id);
                 return <<<HTML
-                    <a class="no-underline dim text-primary font-bold" href="{$route}" target="_blank">{$this->user->name}</a>
-                HTML;
+            <a class="no-underline dim text-primary font-bold" href="{$route}" target="_blank">{$this->user->name}</a>
+HTML;
             })->asHtml(),
-            BelongsTo::make('话题', 'Topic', 'app\\Nova\\Topic')
+            BelongsTo::make('话题', 'Topic', 'App\Nova\Topic')
                 ->hideFromIndex()
                 ->hideFromDetail()
                 ->showOnUpdating()
                 ->showOnCreating()
                 ->required(true)
                 ->searchable(),
-
-            Text::make('话题', function () {
+            Text::make('话题', 'Topic', 'App\Nova\Topic', function () {
                 $route = route('topics.show', $this->topic_id);
                 return <<<HTML
-                    <a class="no-underline dim text-primary font-bold" href="{$route}" target="_blank">{$this->topic->title}</a>
-                HTML;
+            <a class="no-underline dim text-primary font-bold" href="{$route}" target="_blank">{$this->topic->title}</a>
+HTML;
             })->asHtml(),
         ];
     }

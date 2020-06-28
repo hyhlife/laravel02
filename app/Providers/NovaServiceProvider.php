@@ -89,7 +89,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function gate()
     {
         Gate::define('viewNova', function ($user) {
-            return $user->can('manage_users') || $user->can('manage_contents') || $user->can('edit_settings');
+            return $user->can('manage_categories') || $user->can('manage_topics') || $user->can('manage_replies') || $user->can('manage_links') || $user->can('manage_users') || $user->can('manage_roles') || $user->can('manage_permissions') || $user->can('manage_settings');
         });
 
     }

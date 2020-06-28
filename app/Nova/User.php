@@ -26,32 +26,22 @@ class User extends Resource
      *
      * @var string
      */
-    public static $model = 'App\\Models\\User';
+    public static $model = 'App\Models\User';
 
     public static $group = '角色及权限';
-    /**
-     * The single value that should be used to represent the resource when being displayed.
-     *
-     * @var string
-     */
+
     public static $title = 'name';
 
     public static $name = '用户';
 
-    /**
-     * The columns that should be searched.
-     *
-     * @var array
-     */
     public static $search = [
-        'id', 'name', 'email',
+        'id', 'name', 'email'
     ];
 
     public static function label()
     {
         return '用户';
     }
-
 
     /**
      * Get the fields displayed by the resource.
@@ -66,15 +56,15 @@ class User extends Resource
 
             Avatar::make('头像','avatar', function () {
                 return <<<HTML
-                    <img src="{$this->user->avatar}" width="30" style="border-radius: 100px;">
-                HTML;
+            <img src="{$this->user->avatar}" width="30" style="border-radius: 100px;">
+HTML;
             })->disk('minio')->path('huangyanhong/avatar/'.$request->user()->id),
 
             Text::make('用户名','name', function () {
                 $route = route('users.show', $this->id);
                 return <<<HTML
-                    <a class="no-underline dim text-primary font-bold" href="{$route}" target="_blank">{$this->name}</a>
-                HTML;
+            <a class="no-underline dim text-primary font-bold" href="{$route}" target="_blank">{$this->name}</a>
+HTML;
             })->asHtml()->sortable()->onlyOnIndex(),
 
             Text::make('用户名','name')
@@ -103,23 +93,18 @@ class User extends Resource
 
             RoleSelect::make('角色', 'roles'),
 
-            Button::make('用户详情')->link(config('app.url').'/users/'.$this->id)->onlyOnIndex()->style('info'),
-
-            // HasMany::make('Topic', 'topics'),
-
-            // MorphToMany::make('Roles', 'roles', \Vyuldashev\NovaPermission\Role::class),
-            // MorphToMany::make('Permissions', 'permissions', \Vyuldashev\NovaPermission\Permission::class),
+            Button::make('用户详情')->link(config('app.url').'/users/'.$this->id)->onlyOnIndex()->style('info')
         ];
 
         if($this->hasRole('超级管理员')){
             if(Auth::user()->hasRole('超级管理员')){
-                $fields[] = HasMany::make('话题', 'topics',\App\Nova\Topic::class);
-                $fields[] = MorphToMany::make('角色', 'roles', \Vyuldashev\NovaPermission\Role::class);
+                $fields[] = HasMany::make('话题', 'topics','App\Nova\Topic');
+                $fields[] = MorphToMany::make('角色', 'roles', 'Vyuldashev\NovaPermission\Role');
             }
         } else {
-            $fields[] = HasMany::make('话题', 'topics',\App\Nova\Topic::class);
+            $fields[] = HasMany::make('话题', 'topics','App\Nova\Topic');
             if(Auth::user()->can('manage_roles')){
-                $fields[] = MorphToMany::make('角色', 'roles', \Vyuldashev\NovaPermission\Role::class);
+                $fields[] = MorphToMany::make('角色', 'roles','Vyuldashev\NovaPermission\Role');
             }
         }
 
@@ -148,7 +133,7 @@ class User extends Resource
         return [
             new Filters\StartDataFilter(),
             new Filters\EndDataFilter(),
-            new Filters\UserRoleFilter(),
+            new Filters\UserRoleFilter()
         ];
     }
 
@@ -160,13 +145,7 @@ class User extends Resource
      */
     public function lenses(Request $request)
     {
-        return [
-            // (new Lenses\MostValuableUsers)->canSee(function ($request) {
-            //     return $request->user()->can(
-            //         'manage_users', User::class
-            //     );
-            // }),
-        ];
+        return [];
     }
 
     /**
@@ -177,16 +156,6 @@ class User extends Resource
      */
     public function actions(Request $request)
     {
-        return [
-            // (new Actions\EmailAccountProfile)->confirmText('Are you sure you want to activate this user?')
-            // ->confirmButtonText('Activate')
-            // ->cancelButtonText("Don't activate"),
-            // (new Actions\DeleteUserData)
-        ];
-    }
-
-    public function title()
-    {
-        return $this->name;
+        return [];
     }
 }

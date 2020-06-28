@@ -10,17 +10,16 @@ class LinkPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Create a new policy instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function viewAny(): bool
     {
-        //
+        if(Auth::check() && Auth::user()->can('manage_links')){
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public function viewAny(): bool
+    public function view(): bool
     {
         if(Auth::check() && Auth::user()->can('manage_links')){
             return true;
@@ -37,16 +36,6 @@ class LinkPolicy
             return false;
         }
     }
-
-    public function view(): bool
-    {
-        if(Auth::check() && Auth::user()->can('manage_links')){
-            return true;
-        } else {
-            return false;
-        }
-    }
-
 
     public function update()
     {

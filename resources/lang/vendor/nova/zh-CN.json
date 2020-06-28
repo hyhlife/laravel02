@@ -79,6 +79,8 @@
     "replies-Search": "搜索输入评论内容/作者/话题",
     "topics-Search": "搜索输入标题/作者/分类",
     "links-Search": "搜索输入名称/链接",
+    "roles-Search": "搜索角色名称",
+    "permissions-Search": "搜索权限名称",
     "Press / to search": "按 / 全局搜索",
     "Select All": "Select All",
     "Select All Matching": "Select All Matching",
