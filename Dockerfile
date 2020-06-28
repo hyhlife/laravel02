@@ -6,6 +6,7 @@ MAINTAINER HUANGYANHONG <875986139@qq.com>
 COPY . /var/www/backend
 # 确保没有将.env打包进去
 RUN if [ -e /var/www/backend/.env ] ; then rm /var/www/backend/.env; fi
+# RUN if [ -e .env ] ; then rm .env; fi
 
 # 启动脚本，除了php-fpm还有一些额外的配置
 COPY scripts/start.sh /start.sh

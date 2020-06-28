@@ -33,7 +33,7 @@ class UsersController extends Controller
     	$this->authorize('update', $user);
     	$data = $request->all();
         if ($request->avatar) {
-            $result = Storage::disk('minio')->put('/huangyanhong/avatar', $request->file('avatar'));
+            $result = Storage::disk('minio')->put('/huangyanhong/avatar/'.$user->id, $request->file('avatar'));
             if ($result) {
                 $data['avatar'] = $result;
             }

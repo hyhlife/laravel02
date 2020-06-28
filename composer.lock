@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7ecf25b9fed0c888b0972c030fb0e0e9",
+    "content-hash": "081ce63e24037d589395a45872783657",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.142.7",
+            "version": "3.142.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "42f1b348f28388233aa6a0c395f8adc29e8cb752"
+                "reference": "a9cffb2442b63ca8a99ed3e68aef19df221e2a54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/42f1b348f28388233aa6a0c395f8adc29e8cb752",
-                "reference": "42f1b348f28388233aa6a0c395f8adc29e8cb752",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/a9cffb2442b63ca8a99ed3e68aef19df221e2a54",
+                "reference": "a9cffb2442b63ca8a99ed3e68aef19df221e2a54",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -95,7 +95,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2020-06-22T18:15:41+00:00"
+            "time": "2020-06-23T18:46:28+00:00"
         },
         {
             "name": "bakerkretzmar/nova-settings-tool",
@@ -1883,16 +1883,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v6.18.20",
+            "version": "v6.18.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "2862a9857533853bb2851bac39d65e3bfb8ba6cd"
+                "reference": "3e7e9b2e26d88748fe325eda735e4049a7852d06"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/2862a9857533853bb2851bac39d65e3bfb8ba6cd",
-                "reference": "2862a9857533853bb2851bac39d65e3bfb8ba6cd",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/3e7e9b2e26d88748fe325eda735e4049a7852d06",
+                "reference": "3e7e9b2e26d88748fe325eda735e4049a7852d06",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2033,7 +2033,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-06-16T13:21:33+00:00"
+            "time": "2020-06-23T14:45:50+00:00"
         },
         {
             "name": "laravel/horizon",
