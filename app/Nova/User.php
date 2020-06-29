@@ -104,20 +104,6 @@ HTML;
             }
         }
 
-        // if($this->hasRole('超级管理员')){
-        //     if(Auth::user()->hasRole('超级管理员')){
-        //         $fields[] = HasMany::make('话题', 'topics','App\Nova\Topic');
-        //         $fields[] = MorphToMany::make('角色', 'roles', 'Vyuldashev\NovaPermission\Role');
-        //         $fields[] = RoleSelect::make('角色', 'roles');
-        //     }
-        // } else {
-        //     $fields[] = RoleSelect::make('角色', 'roles')->onlyOnIndex();
-        //     $fields[] = HasMany::make('话题', 'topics','App\Nova\Topic');
-        //     if(Auth::user()->can('manage_roles')){
-        //         $fields[] = MorphToMany::make('角色', 'roles','Vyuldashev\NovaPermission\Role');
-        //     }
-        // }
-
         $fields[] = Button::make('用户详情')->link(config('app.url').'/users/'.$this->id)->onlyOnIndex()->style('info');
 
         return $fields;
