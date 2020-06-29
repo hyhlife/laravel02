@@ -8,21 +8,21 @@ use Auth;
 
 class TopicPolicy extends Policy
 {
-    public function viewAny(): bool
-    {
-        if(Auth::check() && Auth::user()->can('manage_topics')){
-            return true;
-        } else {
-            return false;
-        }
-    }
+    // public function viewAny(): bool
+    // {
+    //     if(Auth::check() && Auth::user()->can('manage_topics')){
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
-    public function view(): bool
+    public function view(User $user,Topic $topic)
     {
         if(Auth::check() && Auth::user()->can('manage_topics')){
             return true;
         } else {
-            return false;
+            return Auth::user()->id == $topic->user_id;
         }
     }
 

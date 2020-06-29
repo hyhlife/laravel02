@@ -71,7 +71,7 @@ class Reply extends Resource
                 ->showOnCreating()
                 ->required(true)
                 ->searchable(),
-            Text::make('作者','User','App\Nova\User', function () {
+            Text::make('作者', function () {
                 $route = route('users.show', $this->user_id);
                 return <<<HTML
             <a class="no-underline dim text-primary font-bold" href="{$route}" target="_blank">{$this->user->name}</a>
@@ -84,12 +84,12 @@ HTML;
                 ->showOnCreating()
                 ->required(true)
                 ->searchable(),
-            Text::make('话题', 'Topic', 'App\Nova\Topic', function () {
+            Text::make('话题', function () {
                 $route = route('topics.show', $this->topic_id);
                 return <<<HTML
             <a class="no-underline dim text-primary font-bold" href="{$route}" target="_blank">{$this->topic->title}</a>
 HTML;
-            })->asHtml(),
+            })->asHtml()
         ];
     }
 

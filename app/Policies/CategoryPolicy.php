@@ -21,14 +21,14 @@ class CategoryPolicy
         //
     }
 
-    public function viewAny(): bool
-    {
-        if(Auth::check() && Auth::user()->can('manage_categories')){
-            return true;
-        } else {
-            return false;
-        }
-    }
+    // public function viewAny(): bool
+    // {
+    //     if(Auth::check() && Auth::user()->can('manage_categories')){
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
 
     public function view(): bool

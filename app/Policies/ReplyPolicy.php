@@ -8,7 +8,6 @@ use Auth;
 
 class ReplyPolicy extends Policy
 {
-
     public function viewAny(): bool
     {
         if(Auth::check() && Auth::user()->can('manage_replies')){

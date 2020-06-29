@@ -10,21 +10,21 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(): bool
-    {
-        if(Auth::check() && Auth::user()->can('manage_users')){
-            return true;
-        } else {
-            return false;
-        }
-    }
+    // public function viewAny(): bool
+    // {
+    //     if(Auth::check() && Auth::user()->can('manage_users')){
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
-    public function view(): bool
+    public function view(User $currentUser, User $user): bool
     {
         if(Auth::check() && Auth::user()->can('manage_users')){
             return true;
         } else {
-            return false;
+           return $currentUser->id === $user->id;
         }
     }
 
@@ -69,7 +69,7 @@ class UserPolicy
                 return true;
             }
         } else {
-            return false;
+            return $currentUser->id === $user->id;
         }
     }
 

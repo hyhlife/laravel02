@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Models\User as UserModel;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
@@ -12,7 +13,9 @@ use Laravel\Nova\Fields\BelongsTo;
 use Ek0519\Quilljs\Quilljs;
 use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\Select;
 use NovaButton\Button;
+use Auth;
 
 class Topic extends Resource
 {
@@ -63,7 +66,7 @@ class Topic extends Resource
      */
     public function fields(Request $request)
     {
-        return [
+        $fields = [
             ID::make()->sortable(),
             Text::make('标题','title')
                 ->onlyOnForms()
@@ -104,8 +107,11 @@ HTML;
                 ->alwaysShow()
                 ->rules('required'),
 
-            HasMany::make('评论内容', 'replies','App\Nova\Reply')
+            HasMany::make('评论内容', 'replies','App\Nova\Reply'),
         ];
+
+
+        return $fields;
     }
 
     /**
